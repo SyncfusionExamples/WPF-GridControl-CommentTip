@@ -88,7 +88,6 @@ namespace CommentTip_querycell
 
         private void Model_QueryCellInfo(object sender, GridQueryCellInfoEventArgs e)
         {
-            GridCommentStyleInfo gridStyleInfo = new GridCommentStyleInfo();
             if (e.Style.RowIndex == 0 || e.Style.ColumnIndex == 0)
             {
                 e.Style.CellType = "DataBoundTemplate";
@@ -100,57 +99,25 @@ namespace CommentTip_querycell
             {
                 e.Style.CellValue = dataTable.Rows[e.Style.RowIndex][e.Style.ColumnIndex];
 
-                ////TopLeftComment
                 //Set comment tip for specific cell
                 if (e.Style.RowIndex == 1 && e.Style.ColumnIndex == 2)
                 {
-                    gridStyleInfo.TopLeftCommentBrush = Brushes.Red;
-                    gridStyleInfo.TopLeftComment = e.Style.GridModel[1, 0].CellValue + ": \nPopulation rate in " + e.Style.ColumnIndex + " is " + e.Style.CellValue.ToString();
-                    //gridStyleInfo.TopLeftCommentTemplateKey = "TopLeftCommentTemplate";
-                    e.Style.GridCommentStyleInfo = gridStyleInfo;
+                    e.Style.GridCommentStyleInfo.TopLeftCommentBrush = Brushes.Red;
+                    e.Style.GridCommentStyleInfo.TopLeftComment = e.Style.GridModel[1, 0].CellValue + ": \nPopulation rate in " + e.Style.ColumnIndex + " is " + e.Style.CellValue.ToString();
                 }
                 //set comment tip for specific row
                 if (e.Style.RowIndex == 1 && e.Style.ColumnIndex > 0)
                 {
-                    gridStyleInfo.TopLeftCommentBrush = Brushes.Red;
-                    gridStyleInfo.TopLeftComment = e.Style.GridModel[1, 0].CellValue + ": \nPopulation rate in " + e.Style.ColumnIndex + " is " + e.Style.CellValue.ToString();
-                    e.Style.GridCommentStyleInfo = gridStyleInfo;
+                    e.Style.GridCommentStyleInfo.TopLeftCommentBrush = Brushes.Red;
+                    e.Style.GridCommentStyleInfo.TopLeftComment = e.Style.GridModel[1, 0].CellValue + ": \nPopulation rate in " + e.Style.ColumnIndex + " is " + e.Style.CellValue.ToString();
                 }
 
                 //Set comment tip for specific column
                 if (e.Style.ColumnIndex == 2)
                 {
-                    gridStyleInfo.TopLeftCommentBrush = Brushes.Red;
-                    gridStyleInfo.TopLeftComment = e.Style.GridModel[e.Style.RowIndex, 0].CellValue + "\nPopulation rate in " + e.Style.RowIndex + " is " + e.Style.CellValue.ToString();
-                    e.Style.GridCommentStyleInfo = gridStyleInfo;
+                    e.Style.GridCommentStyleInfo.TopLeftCommentBrush = Brushes.Red;
+                    e.Style.GridCommentStyleInfo.TopLeftComment = e.Style.GridModel[e.Style.RowIndex, 0].CellValue + ": \nPopulation rate in " + e.Style.RowIndex + " is " + e.Style.CellValue.ToString();
                 }
-
-
-                //////BottomLeftComment
-                ////Set comment tip for specific cell
-                //if (e.Style.RowIndex == 1 && e.Style.ColumnIndex == 2)
-                //{
-                //    gridStyleInfo.BottomLeftCommentBrush = Brushes.Purple;
-                //    gridStyleInfo.BottomLeftComment = e.Style.GridModel[1, 0].CellValue + ": \nPopulation rate in " + e.Style.ColumnIndex + " is " + e.Style.CellValue.ToString();
-                //    //gridStyleInfo.TopLeftCommentTemplateKey = "TopLeftCommentTemplate";
-                //    e.Style.GridCommentStyleInfo = gridStyleInfo;
-                //}
-                ////set comment tip for specific row
-                //if (e.Style.RowIndex == 1 && e.Style.ColumnIndex > 0)
-                //{
-                //    gridStyleInfo.BottomLeftCommentBrush = Brushes.Purple;
-                //    gridStyleInfo.BottomLeftComment = e.Style.GridModel[1, 0].CellValue + ": \nPopulation rate in " + e.Style.ColumnIndex + " is " + e.Style.CellValue.ToString();
-                //    e.Style.GridCommentStyleInfo = gridStyleInfo;
-                //}
-
-                ////Set comment tip for specific column
-                //if (e.Style.ColumnIndex == 2)
-                //{
-                //    gridStyleInfo.BottomLeftCommentBrush = Brushes.Purple;
-                //    gridStyleInfo.BottomLeftComment = e.Style.GridModel[e.Style.RowIndex, 0].CellValue + "\nPopulation rate in " + e.Style.RowIndex + " is " + e.Style.CellValue.ToString();
-                //    e.Style.GridCommentStyleInfo = gridStyleInfo;
-                //}
-
             }
         }
     }
