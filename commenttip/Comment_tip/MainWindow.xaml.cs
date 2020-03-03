@@ -47,18 +47,12 @@ namespace Comment_tip
             grid.QueryCellInfo += Grid_QueryCellInfo;
             grid.Model.Options.ActivateCurrentCellBehavior = GridCellActivateAction.DblClickOnCell;
             grid.CellCommentOpening += Grid_CellCommentOpening;
-            GridCommentStyleInfo styleInfo = new GridCommentStyleInfo();
+
+            //Add CommentTip for specific cell            
+            grid.Model[1, 2].GridCommentStyleInfo.TopLeftCommentBrush = Brushes.Red;
+            grid.Model[1, 2].GridCommentStyleInfo.TopLeftComment = grid.Model[1, 0].CellValue + ": \nPopulation rate in " + grid.Model[1, 2].ColumnIndex + " is " + grid.Model[1, 2].CellValue;
 
 
-            //Add CommentTip for specific cell
-            if (grid.Model[1, 2].RowIndex == 1 && grid.Model[1, 2].ColumnIndex == 2)
-            {
-                styleInfo.TopLeftCommentBrush = Brushes.Red;
-                styleInfo.TopLeftComment = grid.Model[1, 0].CellValue + ": \nPopulation rate in " + grid.Model[1, 2].ColumnIndex + " is " + grid.Model[1, 2].CellValue;
-                //styleInfo.ResetTopLeftComment();
-                //styleInfo.TopLeftCommentTemplateKey = "TopLeftCommentTemplate";
-                grid.Model[1, 2].GridCommentStyleInfo = styleInfo;
-            }
 
             //Set CommentTip for specific row or column or cell
             for (int i = 1; i <= 4; i++)
@@ -66,9 +60,8 @@ namespace Comment_tip
                 //Set comment tip for specific row                
                 if (grid.Model[1, i].RowIndex == 1 && grid.Model[1, i].ColumnIndex > 0)
                 {
-                    styleInfo.TopLeftCommentBrush = Brushes.Red;
-                    styleInfo.TopLeftComment = grid.Model[1, 0].CellValue + ": \nPopulation rate in " + grid.Model[1, i].ColumnIndex + " is " + grid.Model[1, i].CellValue;
-                    grid.Model[1, i].GridCommentStyleInfo = styleInfo;
+                    grid.Model[1, i].GridCommentStyleInfo.TopLeftCommentBrush = Brushes.Red;
+                    grid.Model[1, i].GridCommentStyleInfo.TopLeftComment = grid.Model[1, 0].CellValue + ": \nPopulation rate in " + grid.Model[1, i].ColumnIndex + " is " + grid.Model[1, i].CellValue;
                 }
             }
 
@@ -77,46 +70,10 @@ namespace Comment_tip
             {
                 if (grid.Model[i, 2].ColumnIndex == 2 && grid.Model[i, 2].RowIndex > 0)
                 {
-                    styleInfo.TopLeftCommentBrush = Brushes.Red;
-                    styleInfo.TopLeftComment = grid.Model[i, 0].CellValue + ": \nPopulation rate in " + grid.Model[i, 2].RowIndex + " is " + grid.Model[i, 2].CellValue;
-                    grid.Model[i, 2].GridCommentStyleInfo = styleInfo;
+                    grid.Model[i, 2].GridCommentStyleInfo.TopLeftCommentBrush = Brushes.Red;
+                    grid.Model[i, 2].GridCommentStyleInfo.TopLeftComment = grid.Model[i, 0].CellValue + ": \nPopulation rate in " + grid.Model[i, 2].RowIndex + " is " + grid.Model[i, 2].CellValue;
                 }
             }
-
-
-            //////BottomCellComment
-            ////Set CommentTip for specific cell
-            //if (grid.Model[1, 2].RowIndex == 1 && grid.Model[1, 2].ColumnIndex == 2)
-            //{
-            //    styleInfo.BottomLeftCommentBrush = Brushes.Purple;
-            //    styleInfo.BottomLeftComment = grid.Model[1, 0].CellValue + ": \nPopulation rate in " + grid.Model[1, 2].ColumnIndex + " is " + grid.Model[1, 2].CellValue;
-            //    //styleInfo.ResetTopLeftComment();
-            //    //styleInfo.TopLeftCommentTemplateKey = "TopLeftCommentTemplate";
-            //    grid.Model[1, 2].GridCommentStyleInfo = styleInfo;
-            //}
-
-            ////Set CommentTip for specific row or column or cell
-            //for (int i = 1; i <= 4; i++)
-            //{
-            //    //Set comment tip for specific row                
-            //    if (grid.Model[1, i].RowIndex == 1 && grid.Model[1, i].ColumnIndex > 0)
-            //    {
-            //        styleInfo.BottomLeftCommentBrush = Brushes.Purple;
-            //        styleInfo.BottomLeftComment = grid.Model[1, 0].CellValue + ": \nPopulation rate in " + grid.Model[1, i].ColumnIndex + " is " + grid.Model[1, i].CellValue; 
-            //        grid.Model[1, i].GridCommentStyleInfo = styleInfo;
-            //    }
-            //}
-
-            ////Set comment tip for specific column
-            //for (int i = 1; i < 4; i++)
-            //{
-            //    if (grid.Model[i, 2].ColumnIndex == 2 && grid.Model[i, 2].RowIndex > 0)
-            //    {
-            //        styleInfo.BottomLeftCommentBrush = Brushes.Purple;
-            //        styleInfo.BottomLeftComment = grid.Model[i, 0].CellValue + ": \nPopulation rate in " + grid.Model[i, 2].RowIndex + " is " + grid.Model[i, 2].CellValue; 
-            //        grid.Model[i, 2].GridCommentStyleInfo = styleInfo;
-            //    }
-            //}
 
             gridcontrol.Children.Add(grid);
         }
